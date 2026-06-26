@@ -1,8 +1,10 @@
 from pypdf import PdfReader
 from pathlib import Path
 
+# converts pdf -> txt
+DIRECTORY = "/Users/allantsay/Desktop/houston/llm/readings"
 
-target_dir = Path("/Users/allantsay/Desktop/houston/llm/readings")
+target_dir = Path(DIRECTORY)
 
 for pdf_path in target_dir.glob("*.pdf"):
     reader = PdfReader(pdf_path)
