@@ -1,6 +1,7 @@
 from tokenizer import BasicTokenizer
+from tokenizer import RegexTokenizer
 
-with open("data/Taylor Swift Test.txt", "r") as f:
+with open("data/taylorswift.txt", "r") as f:
     text = f.read()
 
 def test_train_vocab_size():
@@ -19,3 +20,13 @@ def test_train_is_deterministic():
     tok1.train(text, 300)
     tok2.train(text, 300)
     assert tok1.merges == tok2.merges
+
+def test_roundtrip_on_unseen_unicode_text():
+    tok = RegexTokenizer()
+    tok.train(text, vocab_size=300)  # trained separately
+
+    test = "hello world!!!? (안녕하세요!) lol123 😉"
+    ids = tok.encode(test)
+    decoded = tok.decode(ids)
+
+    assert decoded == test
