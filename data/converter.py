@@ -2,7 +2,7 @@ from pypdf import PdfReader
 from pathlib import Path
 
 # converts pdf -> txt
-DIRECTORY = "/Users/allantsay/Desktop/houston/llm/readings"
+DIRECTORY = "/Users/allantsay/Desktop/houston/sushiGPT/data"
 
 target_dir = Path(DIRECTORY)
 

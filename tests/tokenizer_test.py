@@ -1,7 +1,7 @@
 from tokenizer import BasicTokenizer
 from tokenizer import RegexTokenizer
 
-with open("data/taylorswift.txt", "r") as f:
+with open("data/input.txt", "r") as f:
     text = f.read()
 
 def test_train_vocab_size():
