@@ -1,12 +1,12 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from config import block_size, dropout
+from config import block_size, dropout, n_embd
 
 class Attention(nn.Module):
-    def __init__(self, n_embd, head_size):
+    def __init__(self, head_size):
         super().__init__()
-
+        
         self.q = nn.Linear(n_embd, head_size)    
         self.k = nn.Linear(n_embd, head_size)
         self.v = nn.Linear(n_embd, head_size)

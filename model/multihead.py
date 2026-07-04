@@ -1,16 +1,15 @@
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
-from config import dropout
-from attention import Attention
+from config import dropout, n_embd, n_heads
+from model.attention import Attention
 
 class MultiHeadAttention(nn.Module):
-    def __init__(self, n_embd, n_heads):
+    def __init__(self):
         super().__init__()
 
         head_size = n_embd // n_heads
 
-        self.heads = nn.ModuleList([Attention(n_embd, head_size) for _ in range(n_heads)])
+        self.heads = nn.ModuleList([Attention(head_size) for _ in range(n_heads)])
         self.projection = nn.Linear(n_embd, n_embd)
         self.dropout = nn.Dropout(dropout)
 

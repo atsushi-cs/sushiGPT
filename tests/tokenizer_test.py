@@ -1,5 +1,5 @@
-from tokenizer import BasicTokenizer
-from tokenizer import RegexTokenizer
+from tokenizer.regex_tokenizer import BasicTokenizer
+from tokenizer.regex_tokenizer import RegexTokenizer
 
 with open("data/input.txt", "r") as f:
     text = f.read()
