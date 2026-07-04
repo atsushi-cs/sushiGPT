@@ -80,7 +80,7 @@ class RegexTokenizer:
     
     def save(self, file_prefix):
         with open(file_prefix + ".model", "w") as f:
-            f.write(self.pat + "/n") 
+            f.write(self.pat + "\n") 
             for (p0, p1), idx in self.merges.items():
                f.write(f"{p0} {p1} {idx}\n")
 
