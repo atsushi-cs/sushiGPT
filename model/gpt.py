@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from config import vocab_size, n_embd, n_heads, n_layers, block_size, dropout
+from config import vocab_size, n_embd, n_layers, block_size
 from model.block import Block
 
 class GPT(nn.Module):

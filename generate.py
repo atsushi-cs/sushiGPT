@@ -4,10 +4,10 @@ from model.gpt import GPT
 
 enc = tiktoken.get_encoding("gpt2")
 model = GPT()
-model.load_state_dict(torch.load("model/sushiGPT.pt"))
+model.load_state_dict(torch.load("weights/sushiGPT_gpt2.pt"))
 model.eval()
 
-prompt = "and	to	Athens	of	the	wide	ways,	and	entered	the"
+prompt = "hi how are you?"
 ids = enc.encode(prompt)
 x = torch.tensor(ids, dtype=torch.long).unsqueeze(0)
 

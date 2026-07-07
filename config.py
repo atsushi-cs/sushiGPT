@@ -1,9 +1,9 @@
-block_size = 256
-n_embd = 384
-n_heads = 6
-n_layers = 6
-dropout = 0.2
+n_embd = 768
+n_heads = 12
+n_layers = 12
 vocab_size = 50257
+block_size = 1024
+dropout = 0.2
 batch_size = 32
 max_iters = 5000
 eval_interval = 100
