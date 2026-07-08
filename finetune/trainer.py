@@ -6,7 +6,7 @@ from config import finetune_lr, num_epochs, batch_size, vocab_size
 import torch.nn.functional as F
 
 model = GPT()
-device = 'cpu'
+device = 'mps' if torch.backends.mps.is_available() else 'cpu'
 model = model.to(device)
 
 model.load_state_dict(torch.load("weights/sushiGPT_gpt2.pt"), strict= False)
@@ -30,18 +30,11 @@ for epoch in range(num_epochs):
     for step, (input_ids, labels) in enumerate(loader):
         input_ids = input_ids.to(device)
         labels = labels.to(device)
-
         logits = model(input_ids)
         loss = F.cross_entropy(logits.view(-1, vocab_size), labels.view(-1))
-        loss = loss / accumulation_steps
+        optimizer.zero_grad()
         loss.backward()
-
-        if (step + 1) % accumulation_steps == 0:
-            optimizer.step()
-            optimizer.zero_grad()
-
-        if step % 10 == 0:
-            torch.mps.empty_cache()
+        optimizer.step()
 
         if step % 100 == 0:
             print(f"epoch {epoch+1}, step {step}: loss {loss.item():.4f}")
