@@ -1,4 +1,4 @@
-from regex_tokenizer import RegexTokenizer
+from tokenizer.regex_tokenizer import RegexTokenizer
 
 with open("data/input.txt", "r", encoding="utf-8") as f:
     text = f.read()

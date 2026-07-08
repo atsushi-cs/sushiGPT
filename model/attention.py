@@ -13,7 +13,7 @@ class Attention(nn.Module):
 
         self.dropout = nn.Dropout(dropout)
 
-        self.register_buffer('tril', torch.tril(torch.ones(block_size, block_size)))
+        self.register_buffer('tril', torch.tril(torch.ones(block_size, block_size)), persistent= False)
 
     def forward(self, x):
         Q = self.q(x)

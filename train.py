@@ -45,3 +45,6 @@ for step in range(max_iters):
 
     if step % eval_interval == 0:
         print(f"step {step}: loss {loss.item():.4f}")
+
+torch.save(model.state_dict(), "model/sushiGPT.pt")
+print("saved model/sushiGPT.pt")
