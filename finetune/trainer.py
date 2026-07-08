@@ -26,7 +26,7 @@ print(f"dataset size: {len(dataset)}")
 optimizer = torch.optim.Adam(model.parameters(), lr = finetune_lr)
 
 for epoch in range(num_epochs):
-    accumulation_steps = 8  
+    # accumulation_steps = 8  
     for step, (input_ids, labels) in enumerate(loader):
         input_ids = input_ids.to(device)
         labels = labels.to(device)
@@ -35,6 +35,16 @@ for epoch in range(num_epochs):
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
+
+        # (laptop is not powerful enough)
+        # logits = model(input_ids)
+        # loss = F.cross_entropy(logits.view(-1, vocab_size), labels.view(-1))
+        # loss = loss / accumulation_steps  # normalize
+        # loss.backward()
+        
+        # if (step + 1) % accumulation_steps == 0:
+        #     optimizer.step()
+        #     optimizer.zero_grad()
 
         if step % 100 == 0:
             print(f"epoch {epoch+1}, step {step}: loss {loss.item():.4f}")
