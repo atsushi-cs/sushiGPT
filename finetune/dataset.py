@@ -23,8 +23,8 @@ class AlpacaDataset(Dataset):
             prompt_ids = enc.encode(prompt)
             full_ids = enc.encode(full)
             
-            # if len(full_ids) > 512: (Only if your device is not powerful enough)
-            #     continue
+            if len(full_ids) > 512: # (Only if your device is not powerful enough)
+                continue
             
             prompt_len = len(prompt_ids)
 
